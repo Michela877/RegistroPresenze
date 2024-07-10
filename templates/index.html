@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gestione Presenze</title>
+	    <!-- Aggiungi il bottone per la homepage-->
+    <a href="http://192.168.178.122:8888/" class="button">ritorna alla homepage</a>
+</head>
+<body>
+    <h1>Gestione Presenze</h1>
+    
+    <h2>Registrazione entrata</h2>
+    <form action="/aggiungi_entrata" method="post">
+        <label for="utente">Utente:</label>
+        <select id="utente" name="utente" required>
+            {% for utente in utenti %}
+                <option value="{{ utente[0] }}">{{ utente[1] }}</option>
+            {% endfor %}
+        </select>
+        <label for="data_presenza">Data presenza:</label>
+        <input type="text" id="data_presenza" name="data_presenza" value="{{ data_presenza }}" readonly>
+        <!-- Campo nascosto per l'orario di entrata -->
+        <input type="hidden" id="orario_entrata" name="orario_entrata" value="{{ orario_entrata }}">
+        <input type="submit" value="Registra entrata">
+    </form>
+    
+    <h2>Registrazione uscita</h2>
+    <form action="/aggiungi_uscita" method="post">
+        <label for="utente">Utente:</label>
+        <select id="utente" name="utente" required>
+            {% for utente in utenti %}
+                <option value="{{ utente[0] }}">{{ utente[1] }}</option>
+            {% endfor %}
+        </select>
+        <label for="data_presenza">Data presenza:</label>
+        <input type="text" id="data_presenza" name="data_presenza" value="{{ data_presenza }}" readonly>
+        <!-- Campo nascosto per l'orario di uscita -->
+        <input type="hidden" id="orario_uscita" name="orario_uscita" value="{{ orario_uscita }}">
+        <input type="submit" value="Registra uscita">
+
+	
+	
+    <hr>
+	
+    <!-- Aggiungi il bottone per la registrazione di un nuovo utente -->
+    <a href="/aggiungi_utente" class="button">Registra nuovo utente</a>
+	
+    <h2>Presenze registrate:</h2>
+    <ul>
+        {% for presenza in presenze %}
+            <li>{{ presenza[1] }} - {{ presenza[2] }} - Entrata: {{ presenza[3] }} - Uscita: {{ presenza[4] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
