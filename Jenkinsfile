@@ -75,7 +75,7 @@ pipeline {
             }
         }
 
-        stage('Remove Docker images') {
+        stage('create table database') {
             steps {
                 script {
                     powershell '''
