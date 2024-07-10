@@ -64,5 +64,21 @@ pipeline {
                 }                
             }
         }
+
+                stage('create database') {
+            steps {
+                script {
+                    powershell '''
+                        docker exec -it mysql-container bash
+                        mysql -h db -u root -p rootpassword
+                        create database if not exists presenze_db;
+                        use presenze_db;
+                        CREATE TABLE presenze ( id INT AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(100) NOT NULL, data_presenza DATE NOT NULL, orario_entrata time, orario_uscita time );
+                        CREATE TABLE utenti ( id INT AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(100) NOT NULL );
+  
+                    ''' 
+                }                
+            }
+        }
     }
 }
