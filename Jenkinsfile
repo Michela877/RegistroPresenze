@@ -64,7 +64,6 @@ pipeline {
                 }                
             }
         }
-
         stage('create database presenzedb') {
             steps {
                 script {
