@@ -42,10 +42,10 @@ pipeline {
                         if (docker ps -q --filter "name=registropresenze_container") {
                             docker stop registropresenze_container
                         }
-                        if (docker ps -aq --filter "name=RegistroPresenze_container") {
+                        if (docker ps -aq --filter "name=registropresenze_container") {
                             docker rm registropresenze_container
                         }
-                        docker run -d -p 6001:6001 --name registropresenze_container test:latest
+                        docker run -d -p 6001:6001 --name registropresenze_container registropresenze:latest
                     '''
                 }
             }
