@@ -28,7 +28,10 @@ pipeline {
                         if (docker images -q registropresenze) {
                             docker rm test
                         }
-                        docker build -t registropresenze:latest .
+                        if (docker images -q mysql) {
+                            docker rm test
+                        }
+                        docker-compose up --build
                     '''
                     
                 }
@@ -39,13 +42,12 @@ pipeline {
             steps {
                 script {
                     powershell '''
-                        if (docker ps -q --filter "name=registropresenze_container") {
-                            docker stop registropresenze_container
+                        if (docker ps -q --filter "name=registropresenze") {
+                            docker stop registropresenze
                         }
-                        if (docker ps -aq --filter "name=registropresenze_container") {
-                            docker rm registropresenze_container
+                        if (docker ps -aq --filter "name=registropresenze") {
+                            docker rm registropresenze
                         }
-                        docker run -d -p 6001:6001 --name registropresenze_container registropresenze:latest
                     '''
                 }
             }
