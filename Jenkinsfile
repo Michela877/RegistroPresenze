@@ -25,7 +25,7 @@ pipeline {
             steps {
                 script {
                     powershell '''
-                        if (docker images -q test) {
+                        if (docker images -q registropresenze) {
                             docker rm test
                         }
                         docker build -t registropresenze:latest .
