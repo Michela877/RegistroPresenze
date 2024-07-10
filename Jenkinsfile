@@ -28,7 +28,7 @@ pipeline {
                         if (docker images -q test) {
                             docker rm test
                         }
-                        docker build -t RegistroPresenze:latest .
+                        docker build -t registropresenze:latest .
                     '''
                     
                 }
@@ -39,13 +39,13 @@ pipeline {
             steps {
                 script {
                     powershell '''
-                        if (docker ps -q --filter "name=RegistroPresenze_container") {
-                            docker stop RegistroPresenze_container
+                        if (docker ps -q --filter "name=registropresenze_container") {
+                            docker stop registropresenze_container
                         }
                         if (docker ps -aq --filter "name=RegistroPresenze_container") {
-                            docker rm RegistroPresenze_container
+                            docker rm registropresenze_container
                         }
-                        docker run -d -p 6001:6001 --name RegistroPresenze_container test:latest
+                        docker run -d -p 6001:6001 --name registropresenze_container test:latest
                     '''
                 }
             }
