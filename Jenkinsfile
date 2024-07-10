@@ -31,7 +31,7 @@ pipeline {
                         if (docker images -q mysql) {
                             docker rm test
                         }
-                        docker-compose up --build
+                        docker-compose up --build -d
                     '''
                     
                 }
