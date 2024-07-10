@@ -2,10 +2,10 @@
 FROM python:3.12
 
 # Imposta l'ambiente Python in modalità non bufferizzata per la stampa e l'output
-ENV PYTHONPATH=/RegistroPresenze
+ENV PYTHONPATH=/registropresenze
 
 # Imposta la directory di lavoro all'interno del container
-WORKDIR /RegistroPresenze
+WORKDIR /registropresenze
 
 
 # Installa le dipendenze Python
